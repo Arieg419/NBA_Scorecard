@@ -1,0 +1,24 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# testing
+coverage
+dev-app-update.yml
+
+# production
+dist
+build
+release-builds
+assets
+
+# misc
+.DS_Store
+.env
+npm-debug.log
+
+.idea
+
+# inspiration
+inspiration

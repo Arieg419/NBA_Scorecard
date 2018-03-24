@@ -1,0 +1,30 @@
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": 0,
+    "jsx-a11y/alt-text": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/img-has-alt": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/media-has-caption": 0,
+    "jsx-a11y/interactive-supports-focus": 0,
+    "jsx-a11y/no-noninteractive-tabindex": 0,
+    "class-methods-use-this": 0,
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}

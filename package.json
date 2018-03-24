@@ -1,0 +1,101 @@
+{
+  "name": "electronreactboilerplate",
+  "author": "Omer Arie Goldberg",
+  "version": "0.0.2",
+  "description": "up and running with electron, react and auto updates",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "devtron": "^1.4.0",
+    "electron": "^1.7.10",
+    "electron-builder": "19.53.7",
+    "electron-devtools-installer": "^2.2.3",
+    "electron-icon-maker": "0.0.4",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "react-scripts": "0.8.5",
+    "wait-on": "^2.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^4.0.0",
+    "electron-context-menu": "^0.9.1",
+    "electron-installer-dmg": "^0.1.2",
+    "electron-is-dev": "^0.3.0",
+    "electron-packager": "^8.7.0",
+    "electron-reload": "^1.1.0",
+    "electron-remote": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^2.18.2",
+    "electron-winstaller": "^2.4.1",
+    "eslint": "^4.8.0",
+    "jsonfile": "^4.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.3",
+    "prop-types": "^15.6.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-moment": "^0.6.8",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "semver": "^5.4.1",
+    "uuid": "^3.1.0",
+    "wait-on": "^2.0.2"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "flow": "flow",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron-pack": "build --em.main=build/electron.js --mac --win -p always",
+    "win-pack": "build --em.main=build/electron.js --win",
+    "check-codesign":
+      "codesign --verify --verbose --deep --strict dist/mac/Scribe.app",
+    "preelectron-pack": "npm run build",
+    "electron": "electron .",
+    "electron-dev":
+      "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron . --dev\"",
+    "dist": "npm run build && build",
+    "pack": "build --dir",
+    "postinstall": "install-app-deps"
+  },
+  "build": {
+    "appId": "com.github.Arieg419.boilerplate",
+    "files": ["build/**/*", "node_modules/**/*", "!build-scripts${/*}"],
+    "forceCodeSigning": true,
+    "directories": {
+      "buildResources": "assets"
+    },
+    "mac": {
+      "category": "your.app.category.type",
+      "publish": {
+        "provider": "github",
+        "owner": "Arieg419"
+      },
+      "target": ["zip", "dmg"]
+    },
+    "win": {
+      "publisherName": "Omer Goldberg",
+      "certificateFile": "./build-scripts/win-cert.pfx",
+      "certificatePassword": "",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
+      ]
+    }
+  }
+}
