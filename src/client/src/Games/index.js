@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Card from "./card";
 
 const styles = {
@@ -13,17 +14,21 @@ const styles = {
   textAlign: "center"
 };
 
-const games = [
-  { home: "Lakers", homeScore: 143, away: "Magic", awayScore: 132 },
-  { home: "Bulls", homeScore: 143, away: "Knicks", awayScore: 132 },
-  { home: "Raptors", homeScore: 143, away: "Cavaliers", awayScore: 132 },
-  { home: "Sixers", homeScore: 143, away: "Twolves", awayScore: 132 }
-];
+const Games = ({ games }) =>
+  games ? (
+    <div style={styles}>
+      {games.map(game => (
+        <Card
+          hTeam={game.hTeam}
+          vTeam={game.vTeam}
+          key={`${game.hTeam.triCode}`}
+        />
+      ))}
+    </div>
+  ) : null;
 
-class Games extends Component {
-  render() {
-    return <div style={styles}>{games.map(game => <Card />)}</div>;
-  }
-}
+Games.propTypes = {
+  games: PropTypes.array
+};
 
 export default Games;

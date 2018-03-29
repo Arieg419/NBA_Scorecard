@@ -10,15 +10,15 @@ const styles = {
   color: "#fff"
 };
 
-const getDate = () => {
-  const today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1; //January is 0!
-  const yyyy = today.getFullYear();
-  dd = dd < 10 ? `0${dd}` : dd;
-  mm = mm < 10 ? `0${mm}` : mm;
-  return `${mm}/${dd}/${yyyy}`;
-};
+// const getDate = () => {
+//   const today = new Date();
+//   let dd = today.getDate();
+//   let mm = today.getMonth() + 1; //January is 0!
+//   const yyyy = today.getFullYear();
+//   dd = dd < 10 ? `0${dd}` : dd;
+//   mm = mm < 10 ? `0${mm}` : mm;
+//   return `${mm}/${dd}/${yyyy}`;
+// };
 
 const Header = props => (
   <div style={styles}>

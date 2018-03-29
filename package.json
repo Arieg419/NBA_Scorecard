@@ -61,19 +61,21 @@
     "eject": "react-scripts eject",
     "electron-pack": "build --em.main=build/electron.js --mac --win -p always",
     "win-pack": "build --em.main=build/electron.js --win",
-    "check-codesign":
-      "codesign --verify --verbose --deep --strict dist/mac/Scribe.app",
+    "check-codesign": "codesign --verify --verbose --deep --strict dist/mac/Scribe.app",
     "preelectron-pack": "npm run build",
     "electron": "electron .",
-    "electron-dev":
-      "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron . --dev\"",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron . --dev\"",
     "dist": "npm run build && build",
     "pack": "build --dir",
     "postinstall": "install-app-deps"
   },
   "build": {
     "appId": "com.github.Arieg419.boilerplate",
-    "files": ["build/**/*", "node_modules/**/*", "!build-scripts${/*}"],
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "!build-scripts${/*}"
+    ],
     "forceCodeSigning": true,
     "directories": {
       "buildResources": "assets"
@@ -84,7 +86,10 @@
         "provider": "github",
         "owner": "Arieg419"
       },
-      "target": ["zip", "dmg"]
+      "target": [
+        "zip",
+        "dmg"
+      ]
     },
     "win": {
       "publisherName": "Omer Goldberg",
@@ -93,7 +98,10 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64", "ia32"]
+          "arch": [
+            "x64",
+            "ia32"
+          ]
         }
       ]
     }
