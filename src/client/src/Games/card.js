@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import triCodes from "../../api/triCodes";
 
 const styles = {
   display: "flex",
@@ -14,15 +15,17 @@ const styles = {
   fontFamily: "LucidaGrande"
 };
 
-import celtics from "../img/boston-celtics-logo-vector.png";
-import lakers from "../img/los-angeles-lakers-logo-vector.png";
+const buildImgPath = triCode => {
+  console.log(`${triCodes[triCode]}`);
+  return triCodes[triCode];
+};
 
 const Card = ({ hTeam, vTeam }) => {
   return hTeam && vTeam ? (
     <div style={styles} key={`${hTeam.triCode}-${vTeam.triCode}`}>
       <img
         alt="homeTeam"
-        src={celtics}
+        src={buildImgPath(hTeam.triCode)}
         style={{ height: "50px", width: "50px" }}
       />
       <p className="">{hTeam.score}</p>
@@ -30,7 +33,7 @@ const Card = ({ hTeam, vTeam }) => {
       <p className="">{vTeam.score}</p>
       <img
         alt="visitingTeam"
-        src={lakers}
+        src={buildImgPath(vTeam.triCode)}
         style={{ height: "50px", width: "50px" }}
       />
     </div>
