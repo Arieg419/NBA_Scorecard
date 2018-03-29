@@ -15,10 +15,7 @@ const styles = {
   fontFamily: "LucidaGrande"
 };
 
-const buildImgPath = triCode => {
-  console.log(`${triCodes[triCode]}`);
-  return triCodes[triCode];
-};
+const buildImgPath = triCode => triCodes[triCode];
 
 const Card = ({ hTeam, vTeam }) => {
   return hTeam && vTeam ? (
