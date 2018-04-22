@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const parseAPI = async () => {
+export const getGameScores = async () => {
   try {
     return await axios.get(
       "http://data.nba.net/10s/prod/v1/20180315/scoreboard.json"
@@ -10,6 +10,17 @@ export const parseAPI = async () => {
   }
   return null;
 };
+
+export const getPlayoffStandings = async () => {
+  try {
+    await axios.get(
+      "http://data.nba.net/10s/prod/v1/2017/playoffsBracket.json"
+    );
+  } catch (e) {
+
+  }
+  return null;
+}
 
 export const getTeamData = (game, key) => ({
   score: game[key].score,

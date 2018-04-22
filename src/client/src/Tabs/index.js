@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { TABS } from "../App";
 
 const styles = {
   backgroundColor: "#824C0A",
@@ -32,16 +33,18 @@ class Tabs extends Component {
       <div style={styles}>
         <ul style={tabBarStyles}>
           <li
+            onClick={() => this.props.setSelectedTab(TABS.GAMES)}
             style={this.state.games ? { borderBottom: "1px solid #fff" } : null}
           >
             Games
           </li>
           <li
+            onClick={() => this.props.setSelectedTab(TABS.PLAYOFF_STANDINGS)}
             style={
               this.state.rosters ? { borderBottom: "1px solid #fff" } : null
             }
           >
-            Rosters
+            Playoff Standings
           </li>
           <li>Teams</li>
           <li>Players</li>
