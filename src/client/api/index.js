@@ -13,7 +13,7 @@ export const getGameScores = async () => {
 
 export const getPlayoffStandings = async () => {
   try {
-    await axios.get(
+    return await axios.get(
       "http://data.nba.net/10s/prod/v1/2017/playoffsBracket.json"
     );
   } catch (e) {
@@ -35,3 +35,31 @@ export const getTeamsData = games =>
     hTeam: getTeamData(game, "hTeam"),
     vTeam: getTeamData(game, "vTeam")
   }));
+
+export const formatSeriesData = series =>
+  series.map(matchup => formatSingleSeries(matchup));
+
+export const formatSingleSeries = (singleSeries) => ({
+    hTeam: {
+      seedNumber: singleSeries.bottomRow.seedNum,
+      teamId: singleSeries.bottomRow.teamId,
+      wins: singleSeries.bottomRow.wins,
+    },
+    vTeam: {
+      seedNumber: singleSeries.topRow.seedNum,
+      teamId: singleSeries.topRow.teamId,
+      wins: singleSeries.topRow.wins,
+    },
+    confName: singleSeries.confName,
+    gameNumber: singleSeries.gameNumber,
+    roundNum: singleSeries.roundNum,
+    summaryStatusText: singleSeries.summaryStatusText,
+})
+
+export const teamIdToTriCode = (teamId) => {
+  try {
+
+  } catch (e) {
+    console.error(e)
+  }
+}

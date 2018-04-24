@@ -4,7 +4,12 @@ import Tabs from "./Tabs";
 import Games from "./Games";
 import PlayoffStandings from "./PlayoffStandings";
 import "./styles/index.css";
-import { getGameScores, getTeamsData } from "../api";
+import {
+  getGameScores,
+  getTeamsData,
+  getPlayoffStandings,
+  formatSeriesData
+} from "../api";
 
 const navStyles = {
   position: "fixed",
@@ -23,14 +28,19 @@ class App extends Component {
     super(props);
     this.state = {
       selectedTab: TABS.GAMES,
-      games: []
+      games: [],
+      playoffSeries: [],
     };
     this.setSelectedTab = this.setSelectedTab.bind(this);
   }
 
   async componentWillMount() {
-    const { data } = await getGameScores();
-    this.setState({ games: getTeamsData(data.games) });
+    const gameScores = await getGameScores();
+    const playoffStandings = await getPlayoffStandings();
+    this.setState({
+      games: getTeamsData(gameScores.data.games),
+      playoffSeries: formatSeriesData(playoffStandings.data.series)
+    });
   }
 
   setSelectedTab(selectedTab) {
@@ -44,7 +54,7 @@ class App extends Component {
       case TABS.GAMES:
         return (<Games games={this.state.games} />);
       case TABS.PLAYOFF_STANDINGS:
-        return (<PlayoffStandings />);
+        return (<PlayoffStandings playoffSeries={this.state.playoffSeries} />);
     }
   }
 

@@ -14,13 +14,23 @@ const styles = {
   textAlign: "center"
 };
 
-const PlayoffStandings = (props) => {
-    return (<div style={styles}>
-      <Card
-        hTeam={{triCode: "PHI", wins: "2"}}
-        vTeam={{triCode: "PHI", wins: "2"}}
-      />
-    </div>);
+const PlayoffStandings = ({playoffSeries}) =>
+      playoffSeries ? (
+        <div style={styles}>
+          {playoffSeries.map(series =>(
+            <Card
+              hTeam={series.hTeam}
+              vTeam={series.vTeam}
+              confName={series.confName}
+              gameNumber={series.gameNumber}
+              roundNum={series.roundNum}
+              summaryStatusText={series.summaryStatusText}
+            /> ))}
+        </div>) : null;
+
+
+PlayoffStandings.propTypes = {
+  playoffSeries: PropTypes.array,
 }
 
 export default PlayoffStandings;

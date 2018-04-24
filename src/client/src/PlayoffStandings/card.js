@@ -17,34 +17,44 @@ const styles = {
 
 const buildImgPath = triCode => triCodes[triCode];
 
-const StandingsCard = ({ hTeam, vTeam }) => {
+const StandingsCard = ({ hTeam, vTeam, roundNum, triCode }) => {
   return hTeam && vTeam ? (
-    <div style={styles} key={`${hTeam.triCode}-${vTeam.triCode}`}>
+    <div style={styles} key={`${hTeam.teamId}-${vTeam.teamId}`}>
       <img
         alt="homeTeam"
-        src={buildImgPath(hTeam.triCode)}
+        src={buildImgPath(triCode)}
         style={{ height: "50px", width: "50px" }}
       />
-      <p className="">{hTeam.wins}</p>
-      <p className="">Round 1</p>
-      <p className="">{vTeam.wins}</p>
+      <p className="">{hTeam.wins} ({hTeam.seedNumber})</p>
+      <p className="">Round {roundNum}</p>
+      <p className="">{vTeam.wins} ({vTeam.seedNumber})</p>
       <img
         alt="visitingTeam"
-        src={buildImgPath(vTeam.triCode)}
+        src={buildImgPath(triCode)}
         style={{ height: "50px", width: "50px" }}
       />
     </div>
   ) : null;
 };
 
+StandingsCard.defaultProps = {
+  triCode: "PHI"
+}
+
 StandingsCard.propTypes = {
+  confName: PropTypes.string,
+  gameNumber: PropTypes.number,
+  roundNum: PropTypes.string,
+  summaryStatusText: PropTypes.string,
   hTeam: PropTypes.shape({
     wins: PropTypes.string,
-    triCode: PropTypes.string
+    seedNumber: PropTypes.string,
+    teamId: PropTypes.string
   }),
   vTeam: PropTypes.shape({
     wins: PropTypes.string,
-    triCode: PropTypes.string
+    seedNumber: PropTypes.string,
+    teamId: PropTypes.string
   })
 };
 
